@@ -74,7 +74,7 @@ def diabetes(Pregnancies, Glucose, Blood_Pressure, SkinThickness, Insulin, BMI,D
     prediction = model.predict(x.reshape(1, -1))
     return prediction
 
-outputs = gr.outputs.Textbox()
+outputs = gr.Textbox()
 app = gr.Interface(fn=diabetes, inputs=['number','number','number','number','number','number','number','number'], outputs=outputs,description="Detection of Diabeties")
 app.launch(share=True)
 ```
