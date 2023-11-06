@@ -16,20 +16,62 @@ Step 9 : Define a problem for block world problem.<br>
 Step 10 : Obtain the plan for given problem.<br> 
      
 ### Program:
-
-
-
-
-
-
-
-
+## domain.pddl
+```
+(define (domain blocksworld) 
+(:requirements :strips :equality) 
+(:predicates (clear ?x) 
+ (on-table ?x) 
+ (arm-empty) 
+ (holding ?x) 
+ (on ?x ?y)) 
+(:action pickup 
+ :parameters (?ob) 
+ :precondition (and (clear ?ob) (on-table ?ob) (arm-empty)) 
+ :effect (and (holding ?ob) (not (clear ?ob)) (not (on-table ?ob)) 
+ (not (arm-empty)))) 
+(:action putdown 
+ :parameters (?ob) 
+ :precondition (and (holding ?ob)) 
+ :effect (and (clear ?ob) (arm-empty) (on-table ?ob) 
+ (not (holding ?ob)))) 
+(:action stack 
+ :parameters (?ob ?underob) 
+ :precondition (and (clear ?underob) (holding ?ob)) 
+ :effect (and (arm-empty) (clear ?ob) (on ?ob ?underob) 
+ (not (clear ?underob)) (not (holding ?ob)))) 
+(:action unstack 
+ :parameters (?ob ?underob) 
+ :precondition (and (on ?ob ?underob) (clear ?ob) (arm-empty)) 
+ :effect (and (holding ?ob) (clear ?underob) 
+ (not (on ?ob ?underob)) (not (clear ?ob)) (not (arm-empty)))))
+```
 
 ### Input 
+## Problem1.pddl
+```
+(define (problem pb1) 
+ (:domain blocksworld) 
+ (:objects a b) 
+ (:init (on-table a) (on-table b) (clear a) (clear b) (arm-empty)) 
+ (:goal (and (on a b))))
+```
 
-### Output/Plan:
+## Output/Plan:
+![image](https://github.com/Madhav005/AI_Lab_2023-24/assets/110885274/581aa90a-ddb9-4c2c-a9c6-cc3d8e33c3a9)
 
+## Problem2.pddl
+```
+(define(problem pb3) 
+ (:domain blocksworld) 
+ (:objects a b c) 
+ (:init (on-table a) (on-table b) (on-table c) 
+ (clear a) (clear b) (clear c) (arm-empty)) 
+ (:goal (and (on a b) (on b c))))
+```
 
+## Output/Plan:
+![image](https://github.com/Madhav005/AI_Lab_2023-24/assets/110885274/9f871c60-d0b7-43f2-b15b-16136f159571)
 
 ### Result:
 Thus the plan was found for the initial and goal state of block world problem.
