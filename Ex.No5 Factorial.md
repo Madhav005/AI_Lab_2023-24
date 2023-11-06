@@ -21,5 +21,4 @@ factorial(A,B) :-
 ### Output:
 ![image](https://github.com/Madhav005/AI_Lab_2023-24/assets/110885274/8d5dc309-9e86-4ae3-982e-27b5300a76e9)
 ![image](https://github.com/Madhav005/AI_Lab_2023-24/assets/110885274/36ac1c65-3b5e-418f-8a25-021f27ac62bd)
-### Result:
-Thus the factorial of given number was found by logic programming. 
+### Result: Thus the factorial of given number was found by logic programming. 
